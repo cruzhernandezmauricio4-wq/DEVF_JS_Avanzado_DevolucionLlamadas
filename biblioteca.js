@@ -25,7 +25,6 @@ function consultarLibros() {
     });
   });
 }
-}
 
 // 4. Agregar libros
 // Permite agregar un nuevo libro a la colección
