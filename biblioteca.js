@@ -25,3 +25,45 @@ function consultarLibros() {
     });
   });
 }
+}
+
+// 4. Agregar libros
+// Permite agregar un nuevo libro a la colección
+function agregarLibro(nuevoLibro, callback) {
+  setTimeout(() => {
+    libros.push(nuevoLibro);
+    console.log(`Libro agregado: ${nuevoLibro.titulo}`);
+    callback();
+  }, 1000);
+}
+
+// 5. Actualizar disponibilidad
+// Cambia el estado de un libro a disponible o prestado
+function actualizarDisponibilidad(titulo, estado, callback) {
+  setTimeout(() => {
+    let libro = libros.find(l => l.titulo === titulo);
+    if (libro) {
+      libro.disponible = estado;
+      console.log(`Disponibilidad actualizada: ${titulo} → ${estado ? "Disponible" : "Prestado"}`);
+    } else {
+      console.log("Libro no encontrado.");
+    }
+    callback();
+  }, 1000);
+}
+
+// ---------------------------
+// Ejemplo de uso en consola
+// ---------------------------
+
+// Consultar inventario inicial
+consultarLibros();
+
+// Agregar un nuevo libro y luego consultar inventario
+agregarLibro(
+  { titulo: "Don Quijote de la Mancha", autor: "Miguel de Cervantes", genero: "Novela", disponible: true },
+  () => consultarLibros()
+);
+
+// Actualizar disponibilidad de un libro y luego consultar inventario
+actualizarDisponibilidad("1984", true, () => consultarLibros());
